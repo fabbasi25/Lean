@@ -1,7 +1,7 @@
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import MIL.Common
 
-variable (a b c d e : ℝ)
+  variable (a b c d e : ℝ)
 open Real
 
 #check (le_refl : ∀ a : ℝ, a ≤ a)
@@ -44,8 +44,10 @@ example (x : ℝ) : x ≤ x :=
 
 -- Try this.
 example (h₀ : a ≤ b) (h₁ : b < c) (h₂ : c ≤ d) (h₃ : d < e) : a < e := by
-  lt_of_le_of_lt h₀ h₁
-  lt_of_le_of_lt h₂ h₃
+  apply lt_of_le_of_lt
+  · apply h₀
+  · apply lt_trans h₁
+    · apply lt_of_le_of_lt h₂ h₃
 
 example (h₀ : a ≤ b) (h₁ : b < c) (h₂ : c ≤ d) (h₃ : d < e) : a < e := by
   linarith
